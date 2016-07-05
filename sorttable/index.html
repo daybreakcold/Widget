@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+
+<!-- Latest Sortable -->
+<script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://johnny.github.io/jquery-sortable/js/jquery-sortable.js"></script>
+<style>
+    body.dragging, body.dragging * {
+        cursor: move !important;
+    }
+
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+
+    ol.example li.placeholder {
+        position: relative;
+        /** More li styles **/
+    }
+    ol.example li.placeholder:before {
+        position: absolute;
+        /** Define arrowhead **/
+    }
+
+</style>
+<!-- sort: true -->
+<!-- <div id="sortTrue" class="list-group">
+  <div class="list-group-item">foo</div>
+  <div class="list-group-item">bar</div>
+  <div class="list-group-item">baz</div>
+</div> -->
+
+
+<!-- sort: false -->
+<!-- <div id="sortFalse" class="list-group">
+  <div class="list-group-item">qux</div>
+  <div class="list-group-item">quux</div>
+</div> -->
+<table class="table table-bordered sorted_table" id="sortTrue">
+    <tr>
+        <th>品类名</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>
+            <button type="button" class="btn btn-primary j_delete_view">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>
+            <button type="button" class="btn btn-primary j_delete_view">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>
+            <button type="button" class="btn btn-primary j_delete_view">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>
+            <button type="button" class="btn btn-primary j_delete_view">删除</button>
+        </td>
+    </tr>
+</table>
+<script>
+    // // sort: true
+    // Sortable.create(sortTrue, {
+    //   group: "sorting",
+    //   sort: true
+    // });
+    $('.sorted_table').sortable({
+        containerSelector: 'table',
+        itemPath: '> tbody',
+        itemSelector: 'tr',
+        placeholder: '<tr class="placeholder"/>'
+    });
+</script>
+</body>
+</html>
