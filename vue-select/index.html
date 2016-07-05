@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<form id="main" v-cloak>
+
+    <div class="bar">
+
+        <input type="text" v-model="searchString" placeholder="请输入快递公司名称" @keyup="keyup" autocomplete="off"/>
+    </div>
+
+    <ul v-bind:class="{ 'hide': hide }">
+        <li v-for="i in articles | searchFor searchString" @click="setInputVal">
+            <p>{{i.title}}</p>
+        </li>
+    </ul>
+
+</form>
+</body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+<script src="index.js"></script>
+</html>
