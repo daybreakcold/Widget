@@ -76,12 +76,12 @@ p b{
   text-transform:uppercase;
   font-size:18px;
 }
-.show{
+.content .show{
   display: block;
 }
 .hide{
   display: none;
 }
-#main div{
+.content div{
   display: none;
 }
