@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_test</title>
+</head>
+<body>
+<div class="container" id="app">
+    <div class="radio-wrapper">
+        <ul class="list clearfix">
+            <li>
+                <a class="link">
+                    <div class="live">
+                        <p>观看直播 ></p>
+                    </div>
+                    <img src="http://a.impingo.me/static/activity/singer/resource/1616312.jpg" class="user">
+                    <img src="./images/play.png" class="play">
+                    <p class="add">+1</p>
+                </a>
+                <div class="user-wrapper">
+                    <div class="name">凌兒</div>
+                    <div class="num">3280</div>
+                </div>
+                <div class="do-btn">
+                    <p>支持</p>
+                </div>
+            </li>
+            <li>
+                <a class="link">
+                    <div class="live">
+                        <p>观看直播 ></p>
+                    </div>
+                    <img src="http://a.impingo.me/static/activity/singer/resource/1616312.jpg" class="user">
+                    <img src="./images/play.png" class="play">
+                    <p class="add">+1</p>
+                </a>
+                <div class="user-wrapper">
+                    <div class="name">凌兒</div>
+                    <div class="num">3280</div>
+                </div>
+                <div class="do-btn">
+                    <p>支持</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    var lib = {
+        urlParams: function (url) {
+            var urlParamsList = {};
+            var params = url.search.replace(/^\?/, "").split('&');//分开成各个不同的对象，去掉'&'
+            for (var i = 0; i < params.length; i++) {
+                var param = params[i];
+                var temp = params.split("=")
+                urlParamsList[temp[0]] = docodeURI(temp[1])
+            }
+            return urlParamsList
+        }
+    }
+
+    window.onload = function () {
+        var attachFastClick = Origami.fastclick;
+        attachFastClick(document.body)
+
+        var windowLocation = window.location,
+                selfUserID = lib.urlParams(windowLocation)['userID'],
+                selfSessionID = lib.urlParams(windowLocation)['sessionID'],
+                selfSessionToken = lib.urlParams(windowLocation)['sessionToken'],
+                selfPeerID = lib.urlParams(windowLocation)['peerID'];
+        var app = new Vue({
+            el: '#app',
+            data: {
+                anchorInfo: [],
+                getAnchorInfoUrl: "http://a.impingo.me/activity/getAnchorInfo"
+            },
+            ready: function () {
+                this.getAnchorInfo();
+            },
+            methods: {
+                getAnchorInfo: function () {
+                    this.$http.jsonp(this.getAnchorInfoUrl)
+                            .then(function (res) {
+                                var rtnData = res.data;
+                                if (rtnData.rtn == 0) {
+                                    this.$set('anchorInfo', rtnData.data);
+                                }
+                            })
+                            .catch(function (res) {
+                                console.info('网络失败');
+                            })
+                }
+            }
+        })
+    }
+
+    getLiving:function(val,anchor) {
+        var curUserID = anchor.userID,
+                isLiving = false;
+        this.livingInfo.forEach(function (living) {
+            if (living.createUserID === curUserID) {
+                if (living, state == "1") {
+                    isLiving = true
+                }
+            }
+        });
+        return isLiving
+    }
+</script>
+</html>
