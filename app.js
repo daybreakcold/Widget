@@ -35,8 +35,9 @@ new Vue({
       ];
       this.events = events;
     },
-    
-    ready: function () {
+  
+    mounted: function () {
+      console.log('run')
       this.fetchEvents()
     },
     
